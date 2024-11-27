@@ -45,86 +45,88 @@ exports.getAllUsers = (callback) => {
 
 
 
-// // Função para criar um novo aluno
-// exports.createUser = (data, callback) => {
-//   const connection = createConnection(); // Cria a conexão com o banco de dados
-//   connection.on("connect", (err) => {
-//     if (err) {
-//       return callback(err, null); // Trata erros de conexão
-//     }
-//     // Consulta SQL para inserir um novo aluno
-//     const query = `INSERT INTO Alunos (rm, nome, idade, turma) VALUES (@rm, @nome, @idade, @turma)`;
-//     const request = new Request(query, (err) => {
-//       if (err) {
-//         callback(err); // Chama a função callback com erro se houver falha
-//       } else {
-//         callback(null, { message: "Aluno inserido com sucesso!" });
-//       }
-//     });
-//     // Adiciona os parâmetros necessários para a inserção
-//     request.addParameter("rm", TYPES.Int, data.rm);
-//     request.addParameter("nome", TYPES.VarChar, data.nome);
-//     request.addParameter("idade", TYPES.Int, data.idade);
-//     request.addParameter("turma", TYPES.VarChar, data.turma);
+// Função para criar um novo aluno
+exports.createUser = (data, callback) => {
+  const connection = createConnection(); // Cria a conexão com o banco de dados
+  connection.on("connect", (err) => {
+    if (err) {
+      return callback(err, null); // Trata erros de conexão
+    }
+    // Consulta SQL para inserir um novo aluno
+    const query = `INSERT INTO user (ID, NOME, AGE, EMAIL, CONTACT) VALUES (@ID, @NOME, @AGE, @EMAIL, @CONTACT)`;
+    const request = new Request(query, (err) => {
+      if (err) {
+        callback(err); // Chama a função callback com erro se houver falha
+      } else {
+        callback(null, { message: "Aluno inserido com sucesso!" });
+      }
+    });
+    // Adiciona os parâmetros necessários para a inserção
+    request.addParameter("ID", TYPES.Int, data.ID);
+    request.addParameter("NOME", TYPES.VarChar, data.NOME);
+    request.addParameter("AGE", TYPES.Int, data.AGE);
+    request.addParameter("EMAIL", TYPES.VarChar, data.EMAIL);
+    request.addParameter("CONTACT", TYPES.VarChar, data.CONTACT);
 
-//     connection.execSql(request); // Executa a consulta
-//   });
+    connection.execSql(request); // Executa a consulta
+  });
 
-//   connection.connect(); // Inicia a conexão
-// };
+  connection.connect(); // Inicia a conexão
+};
 
-// // Função para atualizar um aluno existente
-// exports.updateUser = (rm, data, callback) => {
-//   const connection = createConnection(); // Cria a conexão com o banco de dados
-//   connection.on("connect", (err) => {
-//     if (err) {
-//       return callback(err, null); // Trata erros de conexão
-//     }
-//     // Consulta SQL para atualizar os dados de um aluno pelo RM
-//     const query = `UPDATE Alunos SET nome = @nome, idade = @idade, turma = @turma WHERE rm = @rm`;
-//     const request = new Request(query, (err) => {
-//       if (err) {
-//         callback(err); // Chama a função callback com erro se houver falha
-//       } else {
-//         callback(null, { message: "Aluno atualizado com sucesso!" });
-//       }
-//     });
-//     // Adiciona os parâmetros necessários para a atualização
-//     request.addParameter("rm", TYPES.Int, data.rm);
-//     request.addParameter("nome", TYPES.VarChar, data.nome);
-//     request.addParameter("idade", TYPES.Int, data.idade);
-//     request.addParameter("turma", TYPES.VarChar, data.turma);
+// Função para atualizar um aluno existente
+exports.updateUser = (ID, data, callback) => {
+  const connection = createConnection(); // Cria a conexão com o banco de dados
+  connection.on("connect", (err) => {
+    if (err) {
+      return callback(err, null); // Trata erros de conexão
+    }
+    // Consulta SQL para atualizar os dados de um aluno pelo RM
+    const query = `UPDATE Users1 SET NOME = @NOME, AGE = @AGE, EMAIL = @EMAIL, CONTACT = @CONTACT WHERE ID = @ID`;
+    const request = new Request(query, (err) => {
+      if (err) {
+        callback(err); // Chama a função callback com erro se houver falha
+      } else {
+        callback(null, { message: "User atualizado com sucesso!" });
+      }
+    });
+    // Adiciona os parâmetros necessários para a atualização
+    request.addParameter("ID", TYPES.Int, data.ID);
+    request.addParameter("NOME", TYPES.VarChar, data.NOME);
+    request.addParameter("AGE", TYPES.Int, data.AGE);
+    request.addParameter("EMAIL", TYPES.VarChar, data.EMAIL);
+    request.addParameter("CONTACT", TYPES.VarChar, data.CONTACT);
 
-//     connection.execSql(request); // Executa a atualização no banco de dados
-//   });
+    connection.execSql(request); // Executa a atualização no banco de dados
+  });
 
-//   connection.connect(); // Inicia a conexão
-// };
+  connection.connect(); // Inicia a conexão
+};
 
-// // Função para deletar um aluno existente
-// exports.deleteUser = (rm, callback) => {
-//   const connection = createConnection(); // Cria a conexão com o banco de dados
-//   connection.on("connect", (err) => {
-//     if (err) {
-//       return callback(err, null); // Trata erros de conexão
-//     }
-//     // Consulta SQL para deletar o aluno pelo RM
-//     const query = `DELETE FROM Alunos WHERE rm = @rm`;
-//     const request = new Request(query, (err) => {
-//       if (err) {
-//         callback(err); // Chama a função callback com erro se houver falha
-//       } else {
-//         callback(null, { message: "Aluno deletado com sucesso!" });
-//       }
-//     });
-//     // Adiciona o parâmetro RM para a exclusão
-//     request.addParameter("rm", TYPES.Int, rm);
+// Função para deletar um aluno existente
+exports.deleteUser = (ID, callback) => {
+  const connection = createConnection(); // Cria a conexão com o banco de dados
+  connection.on("connect", (err) => {
+    if (err) {
+      return callback(err, null); // Trata erros de conexão
+    }
+    // Consulta SQL para deletar o aluno pelo RM
+    const query = `DELETE FROM Users1 WHERE ID = @ID`;
+    const request = new Request(query, (err) => {
+      if (err) {
+        callback(err); // Chama a função callback com erro se houver falha
+      } else {
+        callback(null, { message: "User deletado com sucesso!" });
+      }
+    });
+    // Adiciona o parâmetro RM para a exclusão
+    request.addParameter("ID", TYPES.Int, ID);
 
-//     connection.execSql(request); // Executa a remoção no banco de dados
-//   });
+    connection.execSql(request); // Executa a remoção no banco de dados
+  });
 
-//   connection.connect(); // Inicia a conexão
-// };
+  connection.connect(); // Inicia a conexão
+};
 
 
 // //COM BY

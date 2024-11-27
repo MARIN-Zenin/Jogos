@@ -11,16 +11,16 @@ exports.getUsers = (req, res) => {
   });
 };
 
-// // Função para criar um novo usuário
-// exports.createAluno = (req, res) => {
-//   const data = req.body; // Extrai os dados do corpo da requisição
-//   userModel.createUser(data, (err) => {
-//     if (err) {
-//       return res.status(500).send("Erro ao criar usuário");
-//     }
-//     res.status(201).send("Usuário criado com sucesso");
-//   });
-// };
+// Função para criar um novo usuário
+exports.createUser = (req, res) => {
+  const data = req.body; // Extrai os dados do corpo da requisição
+  userModel.createUser(data, (err) => {
+    if (err) {
+      return res.status(500).send("Erro ao criar usuário");
+    }
+    res.status(201).send("Usuário criado com sucesso");
+  });
+};
 
 // // Função para atualizar um usuário existente
 // exports.updateAluno = (req, res) => {
