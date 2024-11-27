@@ -21,9 +21,9 @@ exports.createUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-  const { id } = req.params; // Corrigir o parâmetro
+  const { ID } = req.params; // Corrigir o parâmetro
   const data = req.body;
-  userModel.updateUser(id, data, (err) => {
+  userModel.updateUser(ID, data, (err) => {
     if (err) {
       return res.status(500).send("Erro ao atualizar usuário");
     }
@@ -32,8 +32,8 @@ exports.updateUser = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-  const { id } = req.params; // Corrigir o parâmetro
-  userModel.deleteUser(id, (err) => {
+  const { ID } = req.params; // Corrigir o parâmetro
+  userModel.deleteUser(ID, (err) => {
     if (err) {
       return res.status(500).send("Erro ao deletar usuário");
     }
