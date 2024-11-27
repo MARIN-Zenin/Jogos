@@ -3,11 +3,11 @@
 const userModel = require('../models/userModel'); // Importa o modelo de usuário
 // Função para listar todos os usuários
 exports.getUsers = (req, res) => {
-  userModel.getAllUsers((err, alunos) => {
+  userModel.getAllUsers((err, users) => {
     if (err) {
       return res.status(500).send("Erro ao buscar usuários");
     }
-    res.json(alunos); // Retorna os usuários em formato JSON
+    res.json(users); // Retorna os usuários em formato JSON
   });
 };
 

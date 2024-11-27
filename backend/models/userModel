@@ -9,7 +9,7 @@ exports.getAllUsers = (callback) => {
     if (err) {
       return callback(err, null); // Trata erros de conexão
     }
-    const query = `SELECT * FROM Alunos`; // SQL para buscar todos os alunos
+    const query = `SELECT * FROM Users1`; // SQL para buscar todos os alunos
     const request = new Request(query, (err, rowCount) => {
       if (err) {
         return callback(err, null); // Trata erros de execução da consulta
