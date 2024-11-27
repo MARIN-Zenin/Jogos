@@ -21,7 +21,11 @@ exports.createUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-  const { ID } = req.params; // Corrigir o parâmetro
+  const { ID } = req.params;
+  const { NAME } = req.body;
+  const { AGE } = req.body;
+  const { EMAIL } = req.body;
+  const { CONTACT } = req.body;
   const data = req.body;
   userModel.updateUser(ID, data, (err) => {
     if (err) {
