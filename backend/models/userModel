@@ -53,7 +53,7 @@ exports.createUser = (data, callback) => {
       return callback(err, null); // Trata erros de conexão
     }
     // Consulta SQL para inserir um novo aluno
-    const query = `INSERT INTO user (ID, NOME, AGE, EMAIL, CONTACT) VALUES (@ID, @NOME, @AGE, @EMAIL, @CONTACT)`;
+    const query = `INSERT INTO Users1 (ID, NOME, AGE, EMAIL, CONTACT) VALUES (@ID, @NOME, @AGE, @EMAIL, @CONTACT)`;
     const request = new Request(query, (err) => {
       if (err) {
         callback(err); // Chama a função callback com erro se houver falha
