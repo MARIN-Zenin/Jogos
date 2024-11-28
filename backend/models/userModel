@@ -39,7 +39,7 @@ exports.getAllUsers = (callback) => {
 
     // Evento 'requestCompleted' para retornar os resultados da consulta após a execução
     request.on("requestCompleted", () => {
-      callback(null, result); // Retorna o array de resultados
+      return callback(null, result); // Retorna o array de resultados
     });
 
     // Executa a consulta SQL no banco de dados
@@ -66,7 +66,7 @@ exports.createUser = (data, callback) => {
       if (err) {
         return callback(err); // Chama a função callback com erro se houver falha
       } else {
-        callback(null, { message: "Usuário inserido com sucesso!" }); // Retorna uma mensagem de sucesso
+        return callback(null, { message: "Usuário inserido com sucesso!" }); // Retorna uma mensagem de sucesso
       }
     });
 
@@ -100,7 +100,7 @@ exports.updateUser = (id, name, age, email, contact, callback) => {
       if (err) {
         return callback(err); // Chama a função callback com erro se houver falha
       } else {
-        callback(null, { message: "Usuário atualizado com sucesso!" }); // Retorna uma mensagem de sucesso
+        return  callback(null, { message: "Usuário atualizado com sucesso!" }); // Retorna uma mensagem de sucesso
       }
     });
 
@@ -135,7 +135,7 @@ exports.deleteUser = (id, callback) => {
       if (err) {
         return callback(err); // Chama a função callback com erro se houver falha
       } else {
-        callback(null, { message: "Usuário deletado com sucesso!" }); // Retorna uma mensagem de sucesso
+        return callback(null, { message: "Usuário deletado com sucesso!" }); // Retorna uma mensagem de sucesso
       }
     });
 
@@ -187,7 +187,7 @@ exports.getUserById = (id, callback) => {
 
     // Evento 'requestCompleted' para retornar o resultado após a execução
     request.on("requestCompleted", () => {
-      callback(null, result); // Retorna o resultado encontrado ou null
+      return callback(null, result); // Retorna o resultado encontrado ou null
     });
 
     // Adiciona o parâmetro para o ID
