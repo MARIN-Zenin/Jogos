@@ -169,10 +169,6 @@ exports.getUserById = (id, callback) => {
       if (err) {
         return callback(err, null); // Trata erros de execução da consulta
       }
-
-      if (rowCount === 0) {
-        return callback(null, null); // Retorna null se não encontrar o usuário
-      }
     });
 
     // Variável para armazenar o resultado da consulta
