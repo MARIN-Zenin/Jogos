@@ -187,7 +187,7 @@ exports.getUserById = (id, callback) => {
 
     // Evento 'requestCompleted' para retornar o resultado após a execução
     request.on("requestCompleted", () => {
-      return callback(null, result); // Retorna o resultado encontrado ou null
+      return callback(null, user); // Retorna o resultado encontrado ou null
     });
 
     // Adiciona o parâmetro para o ID
