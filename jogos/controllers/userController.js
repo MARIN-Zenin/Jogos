@@ -13,7 +13,7 @@ res.json(jogos); //vai retornar os jogos em formato json
 
 //função que lista os jogos por gênero
 exports.getJogosByGenero = (req, res) => {
-   const { generos } = req.params;
+   const { generos } = req.params; //vai fazer uma requisição dos parâmetros - o parâmetro é generos
    userModel.getJogosByGenero (generos, (err, jogos) => {
     if (err) return res.status(500).send ('Erro ao buscar gênero'); //
     res.json(jogos)
@@ -31,8 +31,8 @@ exports.getJogosByPlataforma = (req, res) => {
 
 //função onde cria novos jogos
 exports.createJogos = (req, res) => {
-    const data = req.body;
-    userModel.createJogos(data, (err) => {
+    const data = req.body; //da requisição vem o corpo
+    userModel.createJogos(data, (err) => { //userModel: quando eu estou mandando a minha função para o model
         if (err) {
             return res.status(500).send('Erro ao criar jogo')
         } else {
@@ -54,6 +54,7 @@ exports.updateJogos = (req, res) => {
     });
 };
 
+//Função que deleta os jogos
 exports.deleteJogos = (req, res) => {
     const { idJogo } = req.params;
     userModel.deleteJogos (idJogo, (err) => {
@@ -67,36 +68,39 @@ exports.deleteJogos = (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    exports.getListaDesejos = (req, res) => { 
-    userModel.getAllListaDesejos((err, ListaDesejos) => {
+
+//Função que lista os desejos
+exports.getListaDesejos = (req, res) => { 
+   userModel.getAllListaDesejos((err, ListaDesejos) => {
+   if (err) {
+   res.status(500).send('Erro ao buscar lista de desejos'); 
+   } else {
+   res.json(ListaDesejos); //vai retornar os jogos em formato json
+   }
+ });
+};
+
+//Função que cria novos desejos
+exports.createDesejos = (req, res) => {
+    const data = req.body;
+    userModel.createDesejos(data, (err) => {
     if (err) {
-    res.status(500).send('Erro ao buscar lista de desejos'); 
+    return res.status(500).send('Erro ao adicionar desejo')
     } else {
-    res.json(ListaDesejos); //vai retornar os jogos em formato json
+    res.status(201).send('Desejo criado com sucesso')
+    }
+  });
+};
+
+//Função que atualiza os desejos
+exports.updateDesejos = (req, res) => {
+    const { idDesejos } = req.params;
+    const data = req.body;
+    userModel.updateDesejos (idDesejos, data, (err) => {
+    if (err) {
+    res.status (500).send('Erro ao atualizar desejo');
+    } else {
+    res.send ('Desejo atualizado com sucesso')
     }
     });
-    };
-
-
-    exports.createDesejos = (req, res) => {
-    const data = req.body;
-     userModel.createDesejos(data, (err) => {
-     if (err) {
-          return res.status(500).send('Erro ao adicionar desejo')
-        } else {
-          res.status(201).send('Desejo criado com sucesso')
-        }
-    });
-    };
-
-    exports.updateDesejos = (req, res) => {
-        const { idDesejos } = req.params;
-        const data = req.body;
-        userModel.updateDesejos (idDesejos, data, (err) => {
-            if (err) {
-                res.status (500).send('Erro ao atualizar desejo');
-            } else {
-                res.send ('Desejo atualizado com sucesso')
-            }
-        });
-    };
+};
