@@ -1,4 +1,4 @@
-const userModel = require("..//models/userModel"); // Importa o model para interagir com o banco
+const userModel = require("../models/userModel"); // Importa o model para interagir com o banco
 
 //função que lista todos os jogos
 exports.getJogos = (req, res) => {  //req: requisição e res: resposta
