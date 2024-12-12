@@ -33,6 +33,6 @@ router.get("/desejos", userController.getDesejos);
 router.post("/desejos", userController.createDesejos);
 
 // Rota PUT para atualizar jogo por ID
-router.put("/desejos/:idDesejo", userController.updateDesejo);
+router.put("/desejos/:idDesejo", userController.updateDesejos);
 
 module.exports = router;
