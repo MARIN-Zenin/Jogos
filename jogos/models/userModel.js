@@ -87,7 +87,7 @@ exports.getJogosByGenero = (genero, callback) => {
     });
 
     
-    request.addParameter("genero", TYPES.Varchar, genero);
+    request.addParameter("Genero", TYPES.Varchar, genero);
 
    
     connection.execSql(request);
@@ -141,7 +141,7 @@ exports.getJogosByPlataforma = (plataforma, callback) => {
     });
 
     
-    request.addParameter("plataforma", TYPES.Varchar, plataforma);
+    request.addParameter("Plataforma", TYPES.Varchar, plataforma);
 
    
     connection.execSql(request);
@@ -173,10 +173,10 @@ exports.createJogos = (data, callback) => {
     });
 
     // Adiciona os parâmetros necessários para a inserção
-    request.addParameter("nome", TYPES.VarChar, data.NomeDoJogo);
-    request.addParameter("genero", TYPES.VarChar, data.Genero);
-    request.addParameter("plataforma", TYPES.VarChar, data.Plataforma);
-    request.addParameter("lancamento", TYPES.VarChar, data.DataLancamento);
+    request.addParameter("NomeDoJogo", TYPES.VarChar, data.NomeDoJogo);
+    request.addParameter("Genero", TYPES.VarChar, data.Genero);
+    request.addParameter("Plataforma", TYPES.VarChar, data.Plataforma);
+    request.addParameter("DataLancamento", TYPES.VarChar, data.DataLancamento);
 
     // Executa a consulta SQL para inserção no banco de dados
     connection.execSql(request);
@@ -198,7 +198,7 @@ exports.updateJogos = (id, nome, genero, plataforma, lancamento, callback) => {
     }
 
     // Consulta SQL para atualizar o nome do usuário pelo ID
-    const query = ` UPDATE Jogos SET NomeDoJogo = @nome, Genero = @genero, Plataforma = @plataforma, DataLancamento = @lancamento WHERE ID = @id`;
+    const query = ` UPDATE Jogos SET NomeDoJogo = @nome, Genero = @genero, Plataforma = @plataforma, DataLancamento = @lancamento WHERE IDJogo = @id`;
 
     const request = new Request(query, (err) => {
       if (err) {
@@ -209,11 +209,11 @@ exports.updateJogos = (id, nome, genero, plataforma, lancamento, callback) => {
     });
 
     // Adiciona os parâmetros necessários para a atualização
-    request.addParameter("id", TYPES.Int, id); // Passa o ID para a atualização
-    request.addParameter("nome", TYPES.VarChar, NomeDoJogo); // Passa o novo nome
-    request.addParameter("genero", TYPES.VarChar, Genero);
-    request.addParameter("plataforma", TYPES.VarChar, Plataforma);
-    request.addParameter("lancamento", TYPES.VarChar, DataLancamento);
+    request.addParameter("IDJogo", TYPES.Int, Id); // Passa o ID para a atualização
+    request.addParameter("NomeDoJogo", TYPES.VarChar, Nome); // Passa o novo nome
+    request.addParameter("Genero", TYPES.VarChar, Genero);
+    request.addParameter("Plataforma", TYPES.VarChar, Plataforma);
+    request.addParameter("DataLancamento", TYPES.VarChar, Lancamento);
 
     // Executa a consulta SQL para atualização no banco de dados
     connection.execSql(request);
@@ -234,7 +234,7 @@ exports.deleteJogos = (id, callback) => {
     }
 
     // Consulta SQL para deletar o usuário pelo ID
-    const query = `DELETE FROM Jogos WHERE ID = @id`;
+    const query = `DELETE FROM Jogos WHERE IDJogo = @id`;
 
     const request = new Request(query, (err) => {
       if (err) {
@@ -245,7 +245,7 @@ exports.deleteJogos = (id, callback) => {
     });
 
     // Adiciona o parâmetro necessário para a exclusão
-    request.addParameter("id", TYPES.Int, id); // Passa o ID para exclusão
+    request.addParameter("IDJogo", TYPES.Int, id); // Passa o ID para exclusão
 
     // Executa a consulta SQL para exclusão no banco de dados
     connection.execSql(request);
@@ -315,7 +315,7 @@ exports.createDesejos = (data, callback) => {
 
     // Adiciona os parâmetros necessários para a inserção
     request.addParameter("IDJogo", TYPES.int, data.id);
-    request.addParameter("genero", TYPES.VarChar, data.email);
+    request.addParameter("Genero", TYPES.VarChar, data.email);
 
     // Executa a consulta SQL para inserção no banco de dados
     connection.execSql(request);
