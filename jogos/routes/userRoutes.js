@@ -27,7 +27,7 @@ router.delete("/jogos/:idJogo", userController.deleteJogos)
 //----------------------------------------[Lista de Desejos]
 
 // Rota GET para buscar todos os desejos
-router.get("/desejos", userController.getDesejos);
+router.get("/desejos", userController.getListaDesejos);
 
 // Rota POST para incluir novos jogos desejados
 router.post("/desejos", userController.createDesejos);
