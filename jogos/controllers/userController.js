@@ -1,9 +1,8 @@
 const userModel = require("..//models/userModel"); // Importa o model para interagir com o banco
 
 //função que lista todos os jogos
-
-exports.getJogos = (req, res) => { 
-userModel.getAllJogos((err, jogos) => {
+exports.getJogos = (req, res) => {  //req: requisição e res: resposta
+userModel.getAllJogos((err, jogos) => { 
 if (err) {
 res.status(500).send('Erro ao buscar jogos'); 
 } else {
@@ -12,22 +11,25 @@ res.json(jogos); //vai retornar os jogos em formato json
 });
 };
 
+//função que lista os jogos por gênero
 exports.getJogosByGenero = (req, res) => {
    const { generos } = req.params;
    userModel.getJogosByGenero (generos, (err, jogos) => {
-    if (err) return res.status(500).send ('Erro ao buscar gênero');
+    if (err) return res.status(500).send ('Erro ao buscar gênero'); //
     res.json(jogos)
    });
 };
 
+//função que lista os jogos pela plataforma
 exports.getJogosByPlataforma = (req, res) => {
     const { plataforma } = req.params;
-    userModel.getJogosByGenero (plataforma, (err, jogos) => {
+    userModel.getJogosByPlataforma (plataforma, (err, jogos) => {
      if (err) return res.status(500).send ('Erro ao buscar plataforma');
      res.json(jogos)
     });
  };
 
+//função onde cria novos jogos
 exports.createJogos = (req, res) => {
     const data = req.body;
     userModel.createJogos(data, (err) => {
@@ -39,6 +41,7 @@ exports.createJogos = (req, res) => {
     });
 };
 
+//Função que atualiza os jogos por ID
 exports.updateJogos = (req, res) => {
     const { idJogo } = req.params;
     const data = req.body;
