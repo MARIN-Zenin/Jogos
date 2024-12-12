@@ -51,6 +51,17 @@ exports.updateJogos = (req, res) => {
     });
 };
 
+exports.deleteJogos = (req, res) => {
+    const { idJogo } = req.params;
+    userModel.deleteJogos (idJogo, (err) => {
+        if (err) {
+            res.status(500).send('Erro ao deletar jogo');
+        } else {
+            res.send ('Jogo deletado com sucesso');
+        }
+    });
+};
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     exports.getListaDesejos = (req, res) => { 
